@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- _________________________ Application Settings _________________________ -->
+
+	<app title="Friday Night Funkin' FPS Plus" file="FunkinFPSPlus" main="Main" version="FNF: v0.2.7 | FPS Plus: v3.7" company="Rozebud" />
+
+	<!-- ____________________________ Window Settings ___________________________ -->
+
+	<!--These window settings apply to all targets-->
+	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
+
+	<!--HTML5-specific-->
+	<window if="html5" resizable="true" />
+
+	<!--Desktop-specific-->
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
+
+	<!--Mobile-specific-->
+	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+
+	<!-- _____________________________ Path Settings ____________________________ -->
+
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
+	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
+
+	<source name="source" />
+
+	<assets path="assets/images" />
+	<assets path="assets/data" />
+	<assets path="assets/videos" />
+	
+	<assets path="assets/music" include="*.mp3" if="web"/>
+	<assets path="assets/music" include="*.ogg" unless="web"/>
+	<assets path="assets/sounds" include="*.mp3" if="web" />
+	<assets path="assets/sounds" include="*.ogg" unless="web" />
+	
+	<define name="PRELOAD_ALL" unless="web" />
+	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
+	
+	<section if="PRELOAD_ALL">
+		<library name="data"    preload="true" />
+		<library name="sounds"  preload="true" />
+		<library name="music" 	preload="true" />
+		<library name="images"  preload="true" />
+		<library name="videos"  preload="true" />
+	</section>
+	
+	<section if="NO_PRELOAD_ALL">
+		<library name="data"    preload="false" />
+		<library name="sounds"  preload="false" />
+		<library name="music" 	preload="false" />
+		<library name="images"  preload="false" />
+		<library name="videos"  preload="false" />
+	</section>
+
+	<assets path="assets/fonts" embed='true'/>
+
+	<!-- _______________________________ Libraries ______________________________ -->
+
+	<haxedev set='webgl' />
+
+	<haxelib name="flixel" />
+	<haxelib name="flixel-addons" />
+	<haxelib name="flixel-ui" />
+
+	<haxelib name="hscript" />
+
+	<haxelib name="actuate" />
+	<haxelib name="extension-webm" if="desktop" />
+
+	<!-- ______________________________ Haxedefines _____________________________ -->
+
+	<!--Enable the Flixel core recording system-->
+	<haxedef name="FLX_RECORD" />
+
+	<haxedef name="FLX_NO_MOUSE" if="mobile" />
+	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
+	<haxedef name="FLX_NO_TOUCH" if="desktop" />
+
+	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
+
+	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+
+	<!-- _________________________________ Custom _______________________________ -->
+
+	<icon path="art/iconOG.png" />
+	<icon path="art/icon16.png" size='16'/>
+	<icon path="art/icon32.png" size='32'/>
+	<icon path="art/icon64.png" size='64'/>
+	
+</project>
