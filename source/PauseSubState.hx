@@ -24,13 +24,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		openfl.Lib.current.stage.frameRate = 144;
 		
-		if (PlayState.storyPlaylist.length > 1 && PlayState.isStoryMode){
-			menuItems.insert(2, "Skip Song");
-		}
-		
-		if (!PlayState.isStoryMode){
-			menuItems.insert(2, "Chart Editor");
-		}
+		menuItems.insert(2, "Chart Editor");
 
 		pauseMusic = new FlxSound().loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
 		
@@ -97,31 +91,8 @@ class PauseSubState extends MusicBeatSubstate
 				case "Chart Editor":
 					FlxG.switchState(new ChartingState());
 					
-				case "Skip Song":
-				
-					PlayState.storyPlaylist.remove(PlayState.storyPlaylist[0]);
-					
-					var difficulty:String = "";
-
-					if (PlayState.storyDifficulty == 0)
-						difficulty = '-easy';
-						
-					if (PlayState.storyDifficulty == 2)
-						difficulty = '-hard';
-
-					trace('LOADING NEXT SONG');
-					trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
-
-					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
-					FlxG.sound.music.stop();
-					FlxG.switchState(new PlayState());
-					
 				case "Exit to menu":
 					switch(PlayState.returnLocation){
-						case "freeplay":
-							FlxG.switchState(new FreeplayState());
-						case "story":
-							FlxG.switchState(new StoryMenuState());
 						default:
 							FlxG.switchState(new MainMenuState());
 					}

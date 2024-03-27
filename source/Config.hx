@@ -5,7 +5,6 @@ using StringTools;
 
 class Config
 {
-	
 	public static var offset:Float;
 	public static var accuracy:String;
 	public static var healthMultiplier:Float;
@@ -17,8 +16,8 @@ class Config
 	public static var noRandomTap:Bool;
 	public static var noFpsCap:Bool;
 
-	public static function resetSettings():Void{
-
+	public static function resetSettings():Void
+	{
 		FlxG.save.data.offset = 0.0;
 		FlxG.save.data.accuracy = "simple";
 		FlxG.save.data.healthMultiplier = 1.0;
@@ -104,5 +103,4 @@ class Config
 		if(FlxG.save.data.ee1 == null)
 			FlxG.save.data.ee1 = false;
 	}
-	
 }

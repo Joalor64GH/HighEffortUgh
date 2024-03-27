@@ -32,6 +32,8 @@ class MainMenuState extends MusicBeatState
 	var versionText:FlxText;
 	var keyWarning:FlxText;
 
+	public static var curSelectedDifficulty:Int = 0;
+
 	override function create()
 	{
 		openfl.Lib.current.stage.frameRate = 144;
@@ -143,9 +145,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-			
-				//Config.write(offsetValue, accuracyType, healthValue / 10.0, healthDrainValue / 10.0);
-			
+				// TO-DO: obviously load ugh and a force easter egg button (end key)
 				if (optionShit[curSelected] == 'donate')
 				{
 					#if linux

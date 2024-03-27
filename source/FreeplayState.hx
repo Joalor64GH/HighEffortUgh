@@ -1,17 +1,16 @@
 package;
 
-import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import lime.utils.Assets;
 
 using StringTools;
 
+// of course this is going unused
+// but i still need it to take some code for MainMenuState
 class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
@@ -33,7 +32,6 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-
 		openfl.Lib.current.stage.frameRate = 144;
 
 		var initSonglist = CoolUtil.coolTextFile('assets/data/freeplaySonglist.txt');
@@ -41,9 +39,7 @@ class FreeplayState extends MusicBeatState
 		curSelected = 0;
 
 		for (i in 0...initSonglist.length)
-		{
 			songs.push(new SongMetadata(initSonglist[i], 1, 'gf'));
-		}
 
 		var isDebug:Bool = true;
 
@@ -64,13 +60,6 @@ class FreeplayState extends MusicBeatState
 
 		if (StoryMenuState.weekUnlocked[6] || isDebug)
 			addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai-angry', 'spirit']);
-
-		// LOAD MUSIC
-		/*for(x in songs){
-			FlxG.sound.cache('assets/music/' + x.songName + "_Inst" + TitleState.soundExt);
-		}*/
-
-		// LOAD CHARACTERS
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
 		add(bg);
@@ -214,21 +203,6 @@ class FreeplayState extends MusicBeatState
 			if (FlxG.sound.music != null)
 				FlxG.sound.music.stop();
 		}
-
-		if (FlxG.keys.justPressed.SEVEN)
-		{
-			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
-			PlayState.isStoryMode = false;
-			PlayState.storyDifficulty = curDifficulty;
-			startingSelection = curSelected;
-			PlayState.returnLocation = "freeplay";
-			PlayState.storyWeek = songs[curSelected].week;
-			trace('CUR WEEK' + PlayState.storyWeek);
-			FlxG.switchState(new ChartingState());
-			if (FlxG.sound.music != null)
-				FlxG.sound.music.stop();
-		}
 	}
 
 	function changeDiff(change:Int = 0)
@@ -240,9 +214,7 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
-		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		#end
 
 		switch (curDifficulty)
 		{
@@ -268,10 +240,7 @@ class FreeplayState extends MusicBeatState
 
 		// selector.y = (70 * curSelected) + 30;
 
-		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		// lerpScore = 0;
-		#end
 
 		FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 		FlxG.sound.music.fadeIn(1, 0, 0.8);

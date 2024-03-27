@@ -22,12 +22,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		var daBf:String = '';
 		switch (daStage)
 		{
-			case 'school':
-				stageSuffix = '-pixel';
-				daBf = 'bf-pixel-dead';
-			case 'schoolEvil':
-				stageSuffix = '-pixel';
-				daBf = 'bf-pixel-dead';
 			default:
 				daBf = 'bf';
 		}
@@ -46,8 +40,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.sound.play('assets/sounds/fnf_loss_sfx' + stageSuffix + TitleState.soundExt);
 		Conductor.changeBPM(100);
 
-		// FlxG.camera.followLerp = 1;
-		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
 
@@ -68,16 +60,12 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			FlxG.sound.music.stop();
-
-			if (PlayState.isStoryMode)
-				FlxG.switchState(new StoryMenuState());
-			else
-				FlxG.switchState(new FreeplayState());
+			FlxG.switchState(new MainMenuState());
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
-			FlxG.sound.playMusic('assets/music/gameOver' + stageSuffix + TitleState.soundExt);
+			FlxG.sound.playMusic('assets/music/gameOver' + TitleState.soundExt);
 		}
 
 		if (FlxG.sound.music.playing)

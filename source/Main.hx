@@ -13,7 +13,7 @@ class Main extends openfl.display.Sprite
 	{
 		super();
 
-		initialState = (preload) ? Startup : TitleVidState;
+		initialState = (preload) ? Startup : TitleState;
 
 		addChild(new flixel.FlxGame(0, 0, initialState, 1, 144, 144, true));
 

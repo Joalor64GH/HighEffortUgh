@@ -17,22 +17,13 @@ using StringTools;
 
 class Startup extends MusicBeatState
 {
-
     var splash:FlxSprite;
-    //var dummy:FlxSprite;
     var loadingText:FlxText;
 
-    var songs:Array<String> =   ["Tutorial", 
-                                "Bopeebo", "Fresh", "Dadbattle", 
-                                "Spookeez", "South", "Monster",
-                                "Pico", "Philly", "Blammed", 
-                                "Satin-Panties", "High", "Milf", 
-                                "Cocoa", "Eggnog", "Winter-Horrorland", 
-                                "Senpai", "Roses", "Thorns"];
+    var songs:Array<String> = ["Ugh"];
 
 	override function create()
 	{
-
         FlxG.mouse.visible = false;
 
         splash = new FlxSprite(0, 0);
@@ -54,29 +45,21 @@ class Startup extends MusicBeatState
         });
         
         super.create();
-
     }
 
     override function update(elapsed) 
     {
-        
-        if(splash.animation.curAnim.finished && splash.animation.curAnim.name == "start"){
+        if (splash.animation.curAnim.finished && splash.animation.curAnim.name == "start")
             preload();  
-        }
-        if(splash.animation.curAnim.finished && splash.animation.curAnim.name == "end"){
-            FlxG.switchState(new TitleVidState());
-            
-        }
+        if (splash.animation.curAnim.finished && splash.animation.curAnim.name == "end")
+            FlxG.switchState(new TitleState());
         
         super.update(elapsed);
-
     }
 
-    function preload(){
-
-        for(x in songs){
+    function preload() {
+        for (x in songs)
             FlxG.sound.cache("assets/music/" + x + "_Inst.ogg");
-        }
 
         FlxG.sound.cache("assets/music/klaskiiLoop.ogg");
        
@@ -85,8 +68,5 @@ class Startup extends MusicBeatState
         splash.updateHitbox();
         splash.x = -13;
         splash.y = -12;
-        //FlxG.sound.play("assets/sounds/loadComplete.ogg");
-
     }
-
 }

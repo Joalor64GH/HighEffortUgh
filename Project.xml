@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' FPS Plus" file="FunkinFPSPlus" main="Main" version="FNF: v0.2.7 | FPS Plus: v3.7" company="Rozebud" />
+	<app title="High Effort Ugh" file="Ugh" main="Main" version="FNF: v0.2.7 | FPS Plus: v3.7" company="Rozebud" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
@@ -22,39 +22,9 @@
 
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
-	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
 
 	<source path="source" />
-
-	<assets path="assets/images" />
-	<assets path="assets/data" />
-	<assets path="assets/videos" />
-	
-	<assets path="assets/music" include="*.mp3" if="web"/>
-	<assets path="assets/music" include="*.ogg" unless="web"/>
-	<assets path="assets/sounds" include="*.mp3" if="web" />
-	<assets path="assets/sounds" include="*.ogg" unless="web" />
-	
-	<define name="PRELOAD_ALL" unless="web" />
-	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
-	
-	<section if="PRELOAD_ALL">
-		<library name="data"    preload="true" />
-		<library name="sounds"  preload="true" />
-		<library name="music" 	preload="true" />
-		<library name="images"  preload="true" />
-		<library name="videos"  preload="true" />
-	</section>
-	
-	<section if="NO_PRELOAD_ALL">
-		<library name="data"    preload="false" />
-		<library name="sounds"  preload="false" />
-		<library name="music" 	preload="false" />
-		<library name="images"  preload="false" />
-		<library name="videos"  preload="false" />
-	</section>
-
-	<assets path="assets/fonts" embed='true'/>
+	<assets path="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
