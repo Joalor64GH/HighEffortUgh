@@ -20,15 +20,11 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	
 	var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	
-	//var configText:FlxText;
-	//var configSelected:Int = 0;
-	
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', "options"];
+	var optionShit:Array<String> = ['freeplay', 'donate', "options"];
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -38,13 +34,10 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-
 		openfl.Lib.current.stage.frameRate = 144;
 
 		if (!FlxG.sound.music.playing)
-		{	
 			FlxG.sound.playMusic("assets/music/klaskiiLoop.ogg", 0.75);
-		}
 
 		persistentUpdate = persistentDraw = true;
 
@@ -69,7 +62,6 @@ class MainMenuState extends MusicBeatState
 		magenta.visible = false;
 		magenta.antialiasing = true;
 		add(magenta);
-		// magenta.scrollFactor.set();
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -80,12 +72,10 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
-			if(optionShit[i] == "mod") {
+			if(optionShit[i] == "mod")
 				menuItem.frames = texMod;
-			}
-			else {
+			else
 				menuItem.frames = tex;
-			}
 			
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
@@ -113,8 +103,6 @@ class MainMenuState extends MusicBeatState
 		FlxTween.tween(versionText, {y: versionText.y - 16}, 0.75, {ease: FlxEase.quintOut, startDelay: 10});
 		FlxTween.tween(keyWarning, {alpha: 1, y: keyWarning.y - 16}, 0.75, {ease: FlxEase.quintOut, startDelay: 10});
 
-		// NG.core.calls.event.logEvent('swag').send();
-
 		changeItem();
 		
 		//Offset Stuff
@@ -127,11 +115,8 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-	
 		if (FlxG.sound.music.volume < 0.8)
-		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
 
 		if (!selectedSomethin)
 		{
@@ -154,9 +139,7 @@ class MainMenuState extends MusicBeatState
 			}
 
 			if (controls.BACK)
-			{
 				FlxG.switchState(new TitleState());
-			}
 
 			if (controls.ACCEPT)
 			{
@@ -213,13 +196,8 @@ class MainMenuState extends MusicBeatState
 						{
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
-								//var daChoice:String = optionShit[curSelected];
-
 								switch (daChoice)
 								{
-									case 'story mode':
-										FlxG.switchState(new StoryMenuState());
-										trace("Story Menu Selected");
 									case 'freeplay':
 										FreeplayState.startingSelection = 0;
 										FlxG.switchState(new FreeplayState());

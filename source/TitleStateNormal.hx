@@ -26,7 +26,7 @@ import openfl.Assets;
 
 using StringTools;
 
-class TitleStateNormal extends MusicBeatState
+class TitleState extends MusicBeatState
 {
 	static var initialized:Bool = false;
 	static public var soundExt:String = ".ogg";

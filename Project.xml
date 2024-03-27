@@ -24,7 +24,7 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
 
-	<source name="source" />
+	<source path="source" />
 
 	<assets path="assets/images" />
 	<assets path="assets/data" />
@@ -65,9 +65,6 @@
 	<haxelib name="flixel-ui" />
 
 	<haxelib name="hscript" />
-
-	<haxelib name="actuate" />
-	<haxelib name="extension-webm" if="desktop" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
